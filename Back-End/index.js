@@ -30,6 +30,7 @@ app.use("/bill", billRoute);
 app.use("/dashboard", dashboardRoute);
 app.use("/contact", contactRoute);
 app.use("/category-sale", categorySaleRoute);
+
 app.use("/product-sale", productSaleRoute);
 
 // Stripe - Xử lý thanh toán

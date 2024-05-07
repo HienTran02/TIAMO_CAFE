@@ -1,0 +1,164 @@
+<mat-card class="category-header">
+  <b>
+    <h2 style="margin: 0">Quản lý đơn đặt hàng</h2>
+  </b>
+  <div>
+    <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()"
+      (click)="submitAction()">Lưu & In hóa đơn <mat-icon>save</mat-icon></button>
+  </div>
+</mat-card>
+<hr>
+<mat-card>
+  <b><span>Thông tin chi tiết khách hàng:</span></b>
+  <form [formGroup]="manageOrderForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Tên khách hàng</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="manageOrderForm.controls.name.touched && manageOrderForm.controls.name.invalid">
+            <span *ngIf="manageOrderForm.controls.name.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="manageOrderForm.controls.email.touched && manageOrderForm.controls.email.invalid">
+            <span *ngIf="manageOrderForm.controls.email.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Số điện thoại</mat-label>
+          <input matInput formControlName="contactNumber" required>
+          <mat-error
+            *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
+            <span *ngIf="manageOrderForm.controls.contactNumber.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Phương thức thanh toán</mat-label>
+          <mat-select matInput formControlName="paymentMethod" required>
+            <mat-option value="Cash">Tiền mặt</mat-option>
+            <mat-option value="Credit Card">Chuyển khoản</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
+            <span *ngIf="manageOrderForm.controls.paymentMethod.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-card>
+<hr>
+<mat-card>
+  <b><span>Chọn sản phẩm:</span></b>
+  <form [formGroup]="manageOrderForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Chọn danh mục</mat-label>
+          <mat-select formControlName="category" (selectionChange)="getProductByCategory($event.value)">
+            <mat-option *ngFor="let category of categories" [value]="category">{{ category.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="manageOrderForm.controls.category.touched && manageOrderForm.controls.category.invalid">
+            <span *ngIf="manageOrderForm.controls.category.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Chọn sản phẩm</mat-label>
+          <mat-select formControlName="product" (selectionChange)="getProductDetails($event.value)">
+            <mat-option *ngFor="let product of products" [value]="product">{{ product.name }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="manageOrderForm.controls.product.touched && manageOrderForm.controls.product.invalid">
+            <span *ngIf="manageOrderForm.controls.product.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Giá</mat-label>
+          <input matInput formControlName="price" required readonly>
+          <mat-error *ngIf="manageOrderForm.controls.price.touched && manageOrderForm.controls.price.invalid">
+            <span *ngIf="manageOrderForm.controls.price.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Số lượng</mat-label>
+          <input matInput formControlName="quantity" required (keyup)="setQuantity($event)" #input>
+          <mat-error *ngIf="manageOrderForm.controls.quantity.touched && manageOrderForm.controls.quantity.invalid">
+            <span *ngIf="manageOrderForm.controls.quantity.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex>
+          <mat-label>Tổng tiền</mat-label>
+          <input matInput formControlName="total" required readonly>
+          <mat-error *ngIf="manageOrderForm.controls.total.touched && manageOrderForm.controls.total.invalid">
+            <span *ngIf="manageOrderForm.controls.total.errors?.required">Trường này không được bỏ trống</span>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </form>
+  <div class="flex-button">
+    <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()">Thêm sản phẩm</button>
+    <button mat-flat-button color="primary" class="float-right">Tổng tiền thanh toán: {{ totalAmount | number }}
+      đồng</button>
+  </div>
+</mat-card>
+<hr>
+<div class="responsive_class">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th class="table-br" mat-header-cell *matHeaderCellDef>Tên sản phẩm</th>
+      <td class="table-br" mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th class="table-br" mat-header-cell *matHeaderCellDef>Tên danh mục</th>
+      <td class="table-br" mat-cell *matCellDef="let element">{{ element.category }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th class="table-br" mat-header-cell *matHeaderCellDef> Hình ảnh </th>
+      <td class="table-br" mat-cell *matCellDef="let element">
+        <img *ngIf="element.file !== ''" style="width: 200px; margin: auto"
+          src="http://localhost:8080/uploads/{{ element.file }}" alt="">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th class="table-br" mat-header-cell *matHeaderCellDef>Giá</th>
+      <td class="table-br" mat-cell *matCellDef="let element">{{ element.price | number }} đồng</td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th class="table-br" mat-header-cell *matHeaderCellDef>Số lượng</th>
+      <td class="table-br" mat-cell *matCellDef="let element">{{ element.quantity | number }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th class="table-br" mat-header-cell *matHeaderCellDef>Tổng tiền</th>
+      <td class="table-br" mat-cell *matCellDef="let element">{{ element.total | number }} đồng</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th class="table-br" mat-header-cell *matHeaderCellDef>Thao tác</th>
+      <td class="table-br" mat-cell *matCellDef="let element; let i = index" class="action-link">
+        <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(i, element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

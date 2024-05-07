@@ -1,0 +1,60 @@
+<!-- <div class="bg-image"></div> -->
+<div style="margin-top: 65px">
+  <mat-carousel timings="250ms ease-in" [autoplay]="true" [interval]="5000" color="accent" maxWidth="auto"
+    [proportion]="25" [slides]="5" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true"
+    [useMouseWheel]="false" orientation="ltr">
+    <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
+      overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
+  </mat-carousel>
+</div>
+<app-best-seller></app-best-seller>
+
+<div class="wrapper sticky">
+  <nav class="navbar-fixed-top">
+    <a href="#" class="logo" style="display:flex; align-items: center;">
+      <mat-icon>
+        local_cafe
+      </mat-icon> <b><span style="font-size: 26px">Laka Cafe</span></b>
+    </a>
+    <ul>
+      <li>
+        <a style="cursor: pointer;" (click)="onRouteCart()">Đặt hàng</a>
+      </li>
+      <li>`
+        <a style="cursor: pointer;" (click)="loginAction()">Đăng nhập</a>
+      </li>
+      <li>
+        <a style="cursor: pointer;" (click)="signupAction()">Đăng ký</a>
+      </li>
+      <li>
+        <a style="cursor: pointer;" (click)="fotgotPasswordAction()">Quên mật khẩu</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="bg-footer">
+
+  <mat-card class="max-w-7xl mx-auto" style="background-color: #6d4c41; color: #fff; opacity: 0.7">
+    <div class="flex justify-evenly">
+      <div>
+        <h2>THÔNG TIN LIÊN HỆ</h2>
+        <p>Phố hàng Tre, Hoàn Kiếm, Hà Nội</p>
+        <p>Phố Hoàng Cầu, Đống Đa, Hà Nội</p>
+        <p>Điện thoại: <a href="tel: +0856529972">0856529972</a></p>
+        <p>Email: <a href="mailto: xuantinh.fe.dev@gmail.com">xuantinh.fe.dev@gmail.com</a></p>
+      </div>
+      <div>
+        <h2>CHĂM SÓC KHÁCH HÀNG</h2>
+        <p>Cà phê tại quán: <a href="tel:+0856529972">0856529972</a></p>
+        <p>Cà phê đóng gói: <a href="tel:+0856529972">0856529972</a></p>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="max-w-7xl mx-auto">
+    <div class="flex" style="justify-content: center;">
+      © Bản quyền thuộc về Xuân Tình | Cung cấp LAKA cà phê
+    </div>
+  </mat-card>
+</div>

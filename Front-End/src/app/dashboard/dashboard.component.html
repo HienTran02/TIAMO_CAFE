@@ -1,0 +1,139 @@
+<body>
+  <mat-card>
+    <h2><b><span>Dashboard</span></b></h2>
+  </mat-card>
+  <br />
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Tổng danh mục:</h2>
+          <h1 class="title">{{ data?.category }}</h1>
+          <p>
+            <button class="button" [routerLink]="['/cafe/category']">Xem danh mục</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Số lượng sản phẩm đang bán tại quán:</h2>
+          <h1 class="title">{{ data?.product }}</h1>
+          <p><button class="button" [routerLink]="['/cafe/product']">Xem sản phẩm</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Tổng số lượng hóa đơn:</h2>
+          <h1 class="title">{{ data?.bill }}</h1>
+          <p><button class="button" [routerLink]="['/cafe/bill']">Xem hóa đơn</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Tổng số danh mục bán hàng:</h2>
+          <h1 class="title">{{ data?.categorySale }}</h1>
+          <p><button class="button" [routerLink]="['/cafe/category-sales']">Xem danh mục bán hàng</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Tổng số sản phẩm bán hàng:</h2>
+          <h1 class="title">{{ data?.productSale }}</h1>
+          <p><button class="button" [routerLink]="['/cafe/product-sales']">Xem sản phẩm bán hàng</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Tổng số lượng nhân viên hoạt động:</h2>
+          <h1 class="title">{{ data?.user }}</h1>
+          <p><button class="button" [routerLink]="['/cafe/user']">Xem nhân viên</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<body style="margin-top: 16px">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Chọn khoảng thời gian thống kê</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker"
+        style="display: flex; justify-content: space-between;">
+        <input matStartDate formControlName="start" placeholder="Start date - format (MM/DD/YYYY)">
+        <input matEndDate formControlName="end" placeholder="End date - format (MM/DD/YYYY)">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <span></span>
+    </mat-form-field>
+  </div>
+  <div style="display: flex; justify-content: space-between;">
+    <div>
+      <!-- <p style="margin: 0; padding: 0;">Từ: {{ startDate }}</p>
+      <p style="margin: 0; padding: 0;">Đến: {{ endDate }}</p> -->
+    </div>
+    <button mat-raised-button (click)="process()" color="primary">
+      <mat-icon>
+        monitoring</mat-icon>
+      Thống kê
+    </button>
+  </div>
+  <mat-card>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2><b><span>Thống kê doanh thu tổng</span></b></h2>
+      <h2><b>Tổng doanh thu: {{ total3 | number }} đồng</b></h2>
+    </div>
+    <div>
+      <p style="margin: 0; padding: 0;">Từ: <span *ngIf="startDate!=='null'">{{ startDate | date: 'dd-MM-YYYY' }}</span>
+      </p>
+      <p style="margin: 0; padding: 0;">Đến: <span *ngIf="endDate!=='null'">{{ endDate | date: 'dd-MM-YYYY' }}</span>
+      </p>
+    </div>
+    <div>
+      <div echarts [options]="option3"></div>
+    </div>
+  </mat-card>
+  <br />
+  <mat-card>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2><b><span>Thống kê doanh thu tiền mặt</span></b></h2>
+      <h2><b>Tổng doanh thu: {{ total | number }} đồng</b></h2>
+    </div>
+    <div>
+      <p style="margin: 0; padding: 0;">Từ: <span *ngIf="startDate!=='null'">{{ startDate | date: 'dd-MM-YYYY' }}</span>
+      </p>
+      <p style="margin: 0; padding: 0;">Đến: <span *ngIf="endDate!=='null'">{{ endDate | date: 'dd-MM-YYYY' }}</span>
+      </p>
+    </div>
+    <div>
+      <div echarts [options]="option"></div>
+    </div>
+  </mat-card>
+  <br />
+  <mat-card>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2><b><span>Thống kê doanh thu chuyển khoản</span></b></h2>
+      <h2><b>Tổng doanh thu: {{ total2 | number }} đồng</b></h2>
+    </div>
+    <div>
+      <p style="margin: 0; padding: 0;">Từ: <span *ngIf="startDate!=='null'">{{ startDate | date: 'dd-MM-YYYY' }}</span>
+      </p>
+      <p style="margin: 0; padding: 0;">Đến: <span *ngIf="endDate!=='null'">{{ endDate | date: 'dd-MM-YYYY' }}</span>
+      </p>
+    </div>
+    <div>
+      <div echarts [options]="option2"></div>
+    </div>
+  </mat-card>
+  <br />
+</body>

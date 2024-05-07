@@ -1,0 +1,73 @@
+.header-flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo-flex {
+  display: flex;
+  align-items: center;
+}
+
+app-header {
+  display: flex;
+  align-items: center;
+}
+
+.mx-auto {
+  margin: auto;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
+}
+
+
+.page-banner {
+  background-image: url('./../../../assets/img/page-banner.jpg');
+  height: 500px;
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 15%;
+}
+
+
+.w-full {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+
+.example-container {}
+
+.mine {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.tel {
+  bottom: 120px;
+}
+
+.zalo {
+  bottom: 280px;
+}
+
+.live-chat {
+  bottom: 360px;
+}
+
+.contact {
+  bottom: 200px;
+
+}

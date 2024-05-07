@@ -1,0 +1,68 @@
+<div class="main-container">
+  <!-- <app-page-header></app-page-header> -->
+  <!-- <div class="page-banner"></div> -->
+  <!-- <div style="margin-top: 80px"> -->
+  <div>
+    <mat-carousel timings="250ms ease-in" [autoplay]="true" [interval]="5000" color="accent" maxWidth="auto"
+      [proportion]="25" [slides]="5" [loop]="true" [hideArrows]="false" [hideIndicators]="false" [useKeyboard]="true"
+      [useMouseWheel]="false" orientation="ltr">
+      <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
+        overlayColor="#00000040" [hideOverlay]="false"></mat-carousel-slide>
+    </mat-carousel>
+  </div>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+    <mat-sidenav style="width: 260px; padding: 15px 8px;" #snav id="snav" class="dark-sidebar pl-xs"
+      [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" [opened]="mobileQuery.matches"
+      [disableClose]="mobileQuery.matches">
+      <app-page-filters (showCategory)="onShowCategory($event)"></app-page-filters>
+      <div style="margin-top:24px">
+        <button mat-raised-button style="width: 100%" (click)="onHot()">Sản phẩm HOT</button>
+      </div>
+      <div style="margin-top:24px">
+        <button mat-raised-button style="width: 100%" (click)="onSale()">Sản phẩm SALE</button>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content style="padding: 24px">
+      <div class="page-content">
+        <!-- <router-outlet></router-outlet> -->
+        <mat-card class="mx-auto">
+          <div style="display: flex; align-items: center;" *ngIf="checkHot">
+              <h3 style="margin: 0; color: #aaa"><a href="">Trang chủ</a></h3>&nbsp;/&nbsp;<h4 style="margin: 0">Sản phẩm HOT
+              </h4>
+          </div>
+          <div style="display: flex; align-items: center;" *ngIf="checkSale">
+            <h3 style="margin: 0; color: #aaa"><a href="">Trang chủ</a></h3>&nbsp;/&nbsp;<h4 style="margin: 0">Sản phẩm SALE
+            </h4>
+          </div>
+          <div style="display: flex; align-items: center;" *ngIf="checkCategory">
+            <h3 style="margin: 0; color: #aaa"><a href="">Trang chủ</a></h3>&nbsp;/&nbsp;<h4 style="margin: 0">Sản phẩm
+            </h4>
+          </div>
+        </mat-card>
+        <br/>
+        <app-page-product-header (columnsCountChange)="onColumnsCountChange($event)"
+          (itemsCountChange)="onItemsCountChange($event)" (sortChange)="onSortChange($event)"
+          (searchChange)="onSearchChange($event)">
+        </app-page-product-header>
+        <br/>
+        <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+          <mat-card *ngIf="products?.length == 0">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <img src="./../../../assets/img/52634_box_empty_product_shipment_icon.png" alt="">
+              <p>Chưa có sản phẩm</p>
+            </div>
+          </mat-card>
+          <mat-grid-tile *ngFor="let product of products">
+            <app-page-product-box [product]="product" (addToCart)="onAddToCart($event)" class="w-full"
+              [fullWidthMode]="cols == 1"  [cols4]="cols == 4"></app-page-product-box>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <br/>
+        <mat-paginator class="flex justify-center" appStylePage (page)="pageChangeEvent($event)" [length]="total"
+          [pageSize]="pageSize" [pageIndex]="pageIndex" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

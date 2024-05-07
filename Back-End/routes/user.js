@@ -50,6 +50,7 @@ router.post("/signup", (req, res) => {
 // API đăng nhập tài khoản
 router.post("/login", (req, res) => {
   const user = req.body;
+  // console.log(user);
   query =
     "select email, name, password, role, status, deleted from user where email=?";
   connection.query(query, [user.email], (err, results) => {

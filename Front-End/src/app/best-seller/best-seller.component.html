@@ -1,0 +1,131 @@
+<div class="example-container">
+  <a href="tel:+856529972" style="color: white">
+    <button *ngIf="check==1" matTooltip="Liện hệ chúng tôi qua số điện thoại - 0856529972" class="mine tel" mat-fab
+      color="primary" style="border-radius: 50%;">
+      <mat-icon>phone</mat-icon>
+    </button>
+  </a>
+
+  <a href="https://zalo.me/0856529972" target="_blank">
+    <button *ngIf="check==1" matTooltip="Liên hệ với chúng tôi bằng Zalo" class="mine zalo" mat-fab color="primary"
+      style="border-radius: 50%;">
+      <mat-icon>message</mat-icon>
+    </button>
+  </a>
+
+    <button *ngIf="check==1" matTooltip="Nhắn cho chúng tôi ngay bây giờ" class="mine live-chat" mat-fab color="primary"
+      style="border-radius: 50%;" (click)="liveChat()">
+      <mat-icon>
+        connect_without_contact</mat-icon>
+    </button>
+
+  <button *ngIf="check==1" matTooltip="Đăng ký thông tin và để lại lời nhắn" class="mine contact" mat-fab color="primary"
+    style="border-radius: 50%;" (click)="onClick()">
+    <mat-icon>
+      mail</mat-icon>
+  </button>
+
+
+  <button *ngIf="check == 0" matTooltip="Ẩn hiện liên hệ" class="mine" mat-fab color="primary"
+    style="border-radius: 50%;" (click)="showButton()">
+    <mat-icon>
+      add</mat-icon>
+  </button>
+
+  <button *ngIf="check == 1" matTooltip="Ẩn hiện liên hệ" class="mine" mat-fab color="primary"
+    style="border-radius: 50%;" (click)="showButton()">
+    <mat-icon>
+      remove</mat-icon>
+  </button>
+</div>
+
+<section class="page-section" id="about">
+  <div class="container">
+    <div class="text-center heading-margin">
+      <h2 class="section-heading text-uppercase">Best Seller</h2>
+    </div>
+    <ul class="timeline">
+      <li>
+        <a href="../../assets/img/cafe-pha-phin-4.jpg" target="_blank">
+          <div class="timeline-image">
+            <img class="rounded-circle img-fluid" src="../../assets/img/cafe-pha-phin-4.jpg" alt="..." />
+          </div>
+        </a>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>Cafe pha phin</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">Một ly cà phê phin em ơi! Câu nói quen thuộc của biết bao người mỗi khi đặt chân vào
+              quán cà phê. Và đôi lúc ta cũng thắc mắc sao gọi là cà phê phin. Cà phê phin là tên gọi cho món cà phê
+              được pha bằng phin.
+            </p>
+          </div>
+        </div>
+      </li>
+      <li class="timeline-inverted">
+        <a href="../../assets/img/cafe-epresso-3.jpg" target="_blank">
+          <div class="timeline-image"><img class="rounded-circle img-fluid" src="../../assets/img/cafe-epresso-3.jpg"
+              alt="..." />
+          </div>
+        </a>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>Cafe Espresso</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">Espresso là loại café rất phổ biến và quen thuộc với nhiều người. Café Espresso xuất
+              hiện lần đầu tiên ở Ý vào năm 1930, sau đó lan sang Tây Ban Nha và các nước châu Âu. Espresso là café được
+              pha bằng máy, sử dụng nước nóng nén bởi áp suất cao qua lớp bột cà phê được xay mịn. </p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="../../assets/img/tra-4.jpg" target="_blank">
+          <div class="timeline-image"><img class="rounded-circle img-fluid" src="../../assets/img/tra-4.jpg"
+              alt="..." />
+          </div>
+        </a>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>Trà</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">Bạn đã bao giờ tự hỏi Trà là gì chưa? Nếu Châu Âu tự hào về rượu như đỉnh cao của nghệ
+              thuật ẩm thực Phương Tây, thì Phương Đông có trà, là đồ uống thuần khiết nhưng phong phú về hương vị, tinh
+              tế và đòi hỏi người thưởng thức phải có sự nhạy bén của các giác quan. Trà là đẳng cấp của hương vị Châu
+              Á.</p>
+          </div>
+        </div>
+      </li>
+      <li class="timeline-inverted">
+        <a href="../../assets/img/banh-mi-2.jpg" target="_blank">
+          <div class="timeline-image"><img class="rounded-circle img-fluid" src="../../assets/img/banh-mi-2.jpg"
+              alt="..." />
+          </div>
+        </a>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <h4>Bánh mì</h4>
+          </div>
+          <div class="timeline-body">
+            <p class="text-muted">Bánh mì là một món ăn Việt Nam, với lớp vỏ ngoài là một ổ bánh mì nướng có da giòn,
+              ruột mềm, còn bên trong là phần nhân. Cùng với “Áo dài”, “Phở”, “bánh mì” đã theo chân người Việt tới
+              nhiều quốc gia trên thế giới và trở thành một trong những biểu tượng của ẩm thực Việt Nam.</p>
+          </div>
+        </div>
+      </li>
+      <li class="timeline-inverted">
+        <div class="timeline-image">
+          <h4>
+            Và nhiều
+            <br />
+            sản phẩm
+            <br />
+            hơn nữa
+          </h4>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

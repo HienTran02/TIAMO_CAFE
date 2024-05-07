@@ -1,0 +1,42 @@
+.header-flex{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo-flex {
+  display: flex;
+  align-items: center;
+}
+
+app-header {
+  display: flex;
+  align-items: center;
+}
+
+
+.example-container {}
+
+.mine {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.tel {
+  bottom: 120px;
+}
+
+.zalo {
+  bottom: 280px;
+}
+
+.live-chat {
+  bottom: 360px;
+}
+
+.contact {
+  bottom: 200px;
+
+}
