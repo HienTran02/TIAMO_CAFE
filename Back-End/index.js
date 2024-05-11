@@ -39,7 +39,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
 const stripe = require("stripe")(
-  "sk_test_51MtO0CCDpSxvrGONrUKuLXanfodvJEay1dTYc3DCFOI7E40ezylv0ub4uQAUBhfrFlHaICkQNsgpbBRdO28VuUie00KDfW2yct"
+  "sk_test_51PFCXoP5WP91Cv3Rln9q5N3YkpbtIiH9ELBvAIVM44Ty3OHVTX4gGo8hyh6oEIBHTGXSHtJkXw3Skh4cOMQgErPs00saRWhFCq"
 );
 
 app.put("/productSale/subtract", function (req, res) {
