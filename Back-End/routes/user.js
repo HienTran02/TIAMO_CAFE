@@ -135,9 +135,9 @@ router.post("/forgotPassword", (req, res) => {
         var mailOptions = {
           from: process.env.EMAIL,
           to: results[0].email,
-          subject: "Mật khẩu được gửi từ Laka Cafe Manage",
+          subject: "Mật khẩu được gửi từ Tiamo cafe Manage",
           html:
-            "<p><b>Chi tiết đăng nhập vào hệ thống Laka Cafe manage</b><br><b>Email: </b>" +
+            "<p><b>Chi tiết đăng nhập vào hệ thống Tiamo cafe manage</b><br><b>Email: </b>" +
             results[0].email +
             "<br><b>Password: </b>" +
             results[0].password +

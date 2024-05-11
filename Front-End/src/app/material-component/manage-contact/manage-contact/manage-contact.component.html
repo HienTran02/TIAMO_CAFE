@@ -42,7 +42,7 @@
         <!-- <mat-slide-toggle (change)="handleChangeAction($event.checked, element.id)" [matTooltipPosition]="'above'"
           matTooltip="Hoạt động hoặc không hoạt động nhân viên" [checked]="element.status"></mat-slide-toggle> -->
         <a
-          href="mailto:{{ element.email }}?subject=Nội dung: {{ element.message }}&body=LAKA CAFE xin kính chào quý khách.">
+          href="mailto:{{ element.email }}?subject=Nội dung: {{ element.message }}&body=Tiamo cafe xin kính chào quý khách.">
           <button mat-raised-button color="primary" *ngIf="element.status == 0"
             (click)="handleChangeAction(1, element.id)">Liên hệ</button>
         </a>

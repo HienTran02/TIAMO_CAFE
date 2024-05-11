@@ -528,7 +528,7 @@ router.get('/pageAllProduct', (req, res, next) => {
   })
 
   var query = '';
-  console.log(categoryID)
+  // console.log(categoryID)
   if (categoryID) {
     query = `select p.id, p.name, p.description, p.image, p.price, p.sale, p.hot, p.quantity, p.status, c.id as categorySaleId, c.name as categoryName from productSale as p INNER JOIN categorySale as c ON p.categorySaleId = c.id where p.deleted = 0 and p.status='true' and  (? IS NULL or p.name LIKE ?) and categorySaleId = ? ORDER BY p.price ${valueSort} LIMIT ? OFFSET ? `;
     connection.query(query, [valueSearch, ['%' + valueSearch + '%'], categoryID, valueLimit, valueOffset], (err, results) => {

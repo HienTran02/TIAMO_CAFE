@@ -58,11 +58,12 @@ export class PageHomeComponent implements OnInit {
   checkHot: any = false;
   checkSale: any = false;
 
-
+  // Ảnh banner đặt hàng
   slides = [
-    { image: './../../../assets/img/page-banner-1.jpg' },
-    { image: './../../../assets/img/page-banner-2.jpg' },
-    { image: './../../../assets/img/bannner.jpg' },
+    {'image': './../../assets/img/page-banner-14.jpg'},
+    {'image': './../../assets/img/page-banner-20.jpg'},
+    {'image': './../../assets/img/page-banner-11.jpg'},
+    {'image': './../../assets/img/page-banner-18.jpg'},
   ];
 
   constructor(
