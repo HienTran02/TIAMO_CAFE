@@ -33,14 +33,13 @@ export class HomeComponent implements OnInit {
   }
 
   onRouteCart() {
-    this.router.navigate(['/page'])
+    this.router.navigate(['/page']);
   }
   // Ảnh banner trang chủ
   slides = [
-    {'image': './../../assets/img/page-banner-14.jpg'},
-    {'image': './../../assets/img/page-banner-20.jpg'},
-    {'image': './../../assets/img/page-banner-21.jpg'},
-    {'image': './../../assets/img/page-banner-18.jpg'},
+    { image: './../../assets/img/page-banner-35.jpg' },
+    { image: './../../assets/img/page-banner-33.jpg' },
+    { image: './../../assets/img/page-banner-34.jpg' },
   ];
 
   // Hàm thực hiện chức năng mở dialog đăng ký

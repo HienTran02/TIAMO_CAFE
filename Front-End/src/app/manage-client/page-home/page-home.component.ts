@@ -60,10 +60,9 @@ export class PageHomeComponent implements OnInit {
 
   // Ảnh banner đặt hàng
   slides = [
-    {'image': './../../assets/img/page-banner-14.jpg'},
-    {'image': './../../assets/img/page-banner-20.jpg'},
-    {'image': './../../assets/img/page-banner-11.jpg'},
-    {'image': './../../assets/img/page-banner-18.jpg'},
+    { image: './../../assets/img/page-banner-35.jpg' },
+    { image: './../../assets/img/page-banner-33.jpg' },
+    { image: './../../assets/img/page-banner-34.jpg' },
   ];
 
   constructor(
